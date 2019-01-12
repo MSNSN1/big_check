@@ -47,10 +47,10 @@ module BigCheck
       arr = []
       article.each do |art|
         result = {}
-        result[:code] = article[:professional_group_code]
-        result[:value] = PROFESSION[article[:professional_group_code]]
-        result[:from] = article[:article_registration_start_date]
-        result[:to] =article[:article_registration_end_date]
+        result[:code] = art[:professional_group_code]
+        result[:value] = PROFESSION[art[:professional_group_code]]
+        result[:from] = art[:article_registration_start_date]
+        result[:to] =art[:article_registration_end_date]
         arr << result
       end
       return arr
@@ -63,8 +63,8 @@ module BigCheck
       arr = []
       article.each do |art|
         result = {}
-        result[:code] = article[:type_of_specialism_id]
-        result[:value] = SPECIALISM[article[:type_of_specialism_id]]
+        result[:code] = art[:type_of_specialism_id]
+        result[:value] = SPECIALISM[art[:type_of_specialism_id]]
         arr << result
       end
       return arr
