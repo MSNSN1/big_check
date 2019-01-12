@@ -76,11 +76,6 @@ module BigCheck
       !@valid
     end
 
-    def active?
-      end_date = Date.parse(article_registration_end_date)
-      return !end_date.past?
-    end
-
     alias_method :name, :birth_surname
 
     private
