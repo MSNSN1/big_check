@@ -82,8 +82,6 @@ module BigCheck
     end
 
     alias_method :name, :birth_surname
-    alias_method :registered_from, :article_registration_start_date
-    alias_method :registered_to, :article_registration_end_date
 
     private
 
