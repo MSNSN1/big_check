@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Gem that allows for checks against the dutch BIG register}
   spec.description   = %q{Gem that allows for checks against the dutch BIG register}
-  spec.homepage      = "TBD"
+  spec.homepage      = "http://www.bidregister.nl"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
