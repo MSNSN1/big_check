@@ -1,6 +1,5 @@
 module BigCheck
   class HCP
-
     attr_accessor :response
 
     SPECIALISM = {"2" => "Allergologie", "3" => "Anesthesiologie","4" => "Algemene gezondheidszorg",
@@ -62,6 +61,8 @@ module BigCheck
     def invalid?
       !@valid
     end
+
+    alias_method :name, :birth_surname
 
     private
 

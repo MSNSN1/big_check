@@ -20,31 +20,35 @@ Or install it yourself as:
 
 ## Usage
 
-Using the gem is pretty simple. You can call the following method directly on the class:
+Using the gem is pretty simple. You can call the `check_by_big` method directly after initiating the class:
 
 ```ruby
-hcp = BigCheck::Client.check_by_big(123455)
+client = BigCheck::Client.new
+client.check_by_big(123455)
 ```
 
-This makes the call to the webservice and initializes a new object of the HCP class when there's a result. You can check validity of the result by calling the `valid?` method. If this equals to true, you can then access the available information.
+This makes the call to the webservice and initializes a new object of the Client class. You can check validity of the result by calling the `valid?` method on the HCP object, that is set to the `hcp` getter. If this equals to true, you can then access the available information.
 
 ```ruby
-hcp.valid?
+client.hcp.valid?
 # true
 
-# currently the following informaiton is available
-hcp.birth_surname
-hcp.mailing_name
-hcp.prefix
-hcp.initial
-hcp.gender
-hcp.profession
-hcp.specialism
+# currently the following information is available
+client.hcp.birth_surname
+client.hcp.mailing_name
+client.hcp.prefix
+client.hcp.initial
+client.hcp.gender
+client.hcp.profession
+client.hcp.specialism
 ```
-There's more information in the response, so you could access the raw response via:
+There's more information in the response, so you could access the response via:
 
 ```ruby
-hcp.response
+client.hcp.response
+
+# Or access the raw original reponse, which is a Savon response object
+client.response
 ```
 
 That's it! Enjoy.
