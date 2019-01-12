@@ -20,37 +20,31 @@ Or install it yourself as:
 
 ## Usage
 
-Using the gem is pretty simple. You first need to initiate the client:
+Using the gem is pretty simple. You can call the following method directly on the class:
 
 ```ruby
-client = BigCheck::Client.new
+hcp = BigCheck::Client.check_by_big(123455)
 ```
 
-After initialization you can call the actual service, which currently only takes a BIG number:
+This makes the call to the webservice and initializes a new object of the HCP class when there's a result. You can check validity of the result by calling the `valid?` method. If this equals to true, you can then access the available information.
 
 ```ruby
-client.check_by_big(123455678)
-```
-
-This initializes a new object of the HCP class. You can check validity of the result by calling the `valid?` method. If this equals to true, you can then access the available information.
-
-```ruby
-client.hcp.valid?
+hcp.valid?
 # true
 
 # currently the following informaiton is available
-client.hcp.birth_surname
-client.hcp.mailing_name
-client.hcp.prefix
-client.hcp.initial
-client.hcp.gender
-client.hcp.profession
-client.hcp.specialism
+hcp.birth_surname
+hcp.mailing_name
+hcp.prefix
+hcp.initial
+hcp.gender
+hcp.profession
+hcp.specialism
 ```
 There's more information in the response, so you could access the raw response via:
 
 ```ruby
-client.hcp.response
+hcp.response
 ```
 
 That's it! Enjoy.

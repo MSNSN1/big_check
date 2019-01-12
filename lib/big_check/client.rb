@@ -3,18 +3,16 @@ module BigCheck
     ENDPOINT = 'http://webservices.cibg.nl/Ribiz/OpenbaarV4.asmx?wsdl'
     require 'savon'
 
-    def initialize
-      @client = Savon.client(wsdl: ENDPOINT, log: false)
-    end
 
-    def check_by_big(big)
+    def self.check_by_big(big_number)
+      @client = @client || Savon.client(wsdl: ENDPOINT, log: false)
       message = {
         "WebSite" => "Ribiz",
         "RegistrationNumber" => big_number
       }
       begin
-        response = @client.call(:list_hcp_approx3, message: message)
-        format_response(response)
+        response = @client.call(:list_hcp_approx4, message: message)
+        return BigCheck::HCP.new(response.body)
       rescue Savon::SOAPFault => e
         raise NotFoundError.new(e.message)
       end
