@@ -33,7 +33,7 @@ module BigCheck
       @valid = (r.empty?) ? false : true
     end
 
-    [:birth_surname, :mailing_name, :prefix, :initial, :gender, :article_registration_start_date, :article_registration_end_date].each do |method|
+    [:birth_surname, :mailing_name, :prefix, :initial, :gender].each do |method|
       define_method "#{method}" do
         return false unless valid?
         return @response[method]
@@ -43,15 +43,29 @@ module BigCheck
     def profession
       return false if invalid? || @response[:article_registration].nil?
       article = @response[:article_registration][:article_registration_ext_app]
-      return [{code: article[:professional_group_code], value: PROFESSION[article[:professional_group_code]]}] if article.is_a? Hash
-      return loop_through_values(article, :professional_group_code, PROFESSION)
+      article = [article] if article.is_a? Hash
+      arr = []
+      article.each do |art|
+        result[:code] = article[:professional_group_code]
+        result[:value] = PROFESSION[article[:professional_group_code]]
+        result[:from] = article[:article_registration_start_date]
+        result[:to] =article[:article_registration_end_date]
+        arr << result
+      end
+      return arr
     end
 
     def specialism
       return false if invalid? || @response[:specialism].nil?
       article = @response[:specialism][:specialism_ext_app1]
-      return [{code: article[:type_of_specialism_id], value: SPECIALISM[article[:type_of_specialism_id]]}] if article.is_a? Hash
-      return loop_through_values(article, :type_of_specialism_id, SPECIALISM)
+      article = [article] if article.is_a? Hash
+      arr = []
+      article.each do |art|
+        result[:code] = article[:type_of_specialism_id]
+        result[:value] = SPECIALISM[article[:type_of_specialism_id]]
+        arr << result
+      end
+      return arr
     end
 
     def valid?
