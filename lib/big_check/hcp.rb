@@ -46,6 +46,7 @@ module BigCheck
       article = [article] if article.is_a? Hash
       arr = []
       article.each do |art|
+        result = {}
         result[:code] = article[:professional_group_code]
         result[:value] = PROFESSION[article[:professional_group_code]]
         result[:from] = article[:article_registration_start_date]
@@ -61,6 +62,7 @@ module BigCheck
       article = [article] if article.is_a? Hash
       arr = []
       article.each do |art|
+        result = {}
         result[:code] = article[:type_of_specialism_id]
         result[:value] = SPECIALISM[article[:type_of_specialism_id]]
         arr << result
