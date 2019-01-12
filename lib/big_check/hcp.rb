@@ -33,7 +33,7 @@ module BigCheck
       @valid = (r.empty?) ? false : true
     end
 
-    [:birth_surname, :mailing_name, :prefix, :initial, :gender].each do |method|
+    [:birth_surname, :mailing_name, :prefix, :initial, :gender, :article_registration_start_date, :article_registration_end_date].each do |method|
       define_method "#{method}" do
         return false unless valid?
         return @response[method]
@@ -62,7 +62,14 @@ module BigCheck
       !@valid
     end
 
+    def active?
+      end_date = Date.parse(article_registration_end_date)
+      return !end_date.past?
+    end
+
     alias_method :name, :birth_surname
+    alias_method :registered_from, :article_registration_start_date
+    alias_method :registered_to, :article_registration_end_date
 
     private
 
