@@ -2,7 +2,7 @@ module BigCheck
   class Client
     ENDPOINT = 'http://webservices.cibg.nl/Ribiz/OpenbaarV4.asmx?wsdl'
     require 'savon'
-    attr_reader :hcp, :response, :client
+    attr_reader :hcp, :response, :client, :classifications
 
     def initialize
       @client = @client || Savon.client(wsdl: ENDPOINT, log: false, raise_errors: false)
@@ -25,6 +25,19 @@ module BigCheck
       rescue => e
         raise UnknownError.new(e.message)
       end
+    end
+
+    def get_classifications
+      @response = @client.call(:get_ribiz_reference_data)
+      fail unless @response.http.code == 200
+      @classifications = BigCheck::Classifications.new(@response.body)
+    rescue Savon::SOAPFault => e
+      raise NotFoundError.new(e.message)
+    rescue Savon::HTTPError => e
+      raise ServerNotFoundError.new(e.message)
+    rescue => e
+      raise UnknownError.new(e.message)
+    end
     end
 
   end
