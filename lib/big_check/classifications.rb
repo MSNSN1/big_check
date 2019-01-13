@@ -3,7 +3,7 @@ module BigCheck
     attr_accessor :response
 
     def initialize response
-      @repsonse = response[:get_ribiz_reference_data_response][:get_ribiz_reference_data_result] ||= {}
+      @response = response[:get_ribiz_reference_data_response][:get_ribiz_reference_data_result] ||= {}
       @valid = (@response.empty?) ? false : true
     end
 
