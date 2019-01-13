@@ -2,7 +2,7 @@ module BigCheck
   class Client
     ENDPOINT = 'http://webservices.cibg.nl/Ribiz/OpenbaarV4.asmx?wsdl'
     require 'savon'
-    attr_reader :hcp, :response
+    attr_reader :hcp, :response, :client
 
     def initialize
       @client = @client || Savon.client(wsdl: ENDPOINT, log: false, raise_errors: false)
