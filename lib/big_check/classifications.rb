@@ -4,7 +4,7 @@ module BigCheck
 
     def initialize response
       @repsonse = response[:get_ribiz_reference_data_response][:get_ribiz_reference_data_result] ||= {}
-      @valid = (r.empty?) ? false : true
+      @valid = (@response.empty?) ? false : true
     end
 
     def professional_groups
