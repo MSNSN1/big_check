@@ -1,6 +1,6 @@
 module BigCheck
   class Client
-    ENDPOINT = 'http://webservices.cibg.nl/Ribiz/OpenbaarV4.asmx?wsdl'
+    ENDPOINT = 'https://webservices.cibg.nl/Ribiz/OpenbaarV4.asmx?wsdl'
     require 'savon'
     attr_reader :hcp, :response, :client, :classifications
 

@@ -15,5 +15,13 @@ module BigCheck
       return @response[:type_of_specialisms][:type_of_specialism]
     end
 
+    def valid?
+      @valid
+    end
+
+    def invalid?
+      !@valid
+    end
+
   end
 end
