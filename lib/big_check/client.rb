@@ -5,7 +5,7 @@ module BigCheck
     attr_reader :hcp, :response, :client, :classifications
 
     def initialize
-      @client = @client || Savon.client(wsdl: ENDPOINT, log: true, raise_errors: true, ssl_verify_mode: :none)
+      @client = @client || Savon.client(wsdl: ENDPOINT, log: false, raise_errors: false, ssl_verify_mode: :none)
     end
 
     def check_by_big(big_number)
