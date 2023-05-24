@@ -1,6 +1,6 @@
 module BigCheck
   class Client
-    ENDPOINT = 'https://webservices.cibg.nl/Ribiz/OpenbaarV4.asmx?wsdl'
+    ENDPOINT = 'https://api.bigregister.nl/zksrv/soap/4'
     require 'savon'
     attr_reader :hcp, :response, :client, :classifications
 
